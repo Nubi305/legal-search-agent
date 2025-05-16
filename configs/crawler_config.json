@@ -1,0 +1,44 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (https://github.com/Nubi305/legal-search-agent)",
+  "request_delay": 2.0,
+  "max_pages": 100,
+  "max_depth": 3,
+  "document_types": ["html", "pdf", "doc", "docx", "txt"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "justia_supreme_court",
+      "url": "https://supreme.justia.com/cases/federal/us/",
+      "selectors": {
+        "content": "div.opinion-text, div.case-header",
+        "links": "a.opinion-link, a.pagination-link"
+      }
+    },
+    {
+      "name": "lawcornell_edu",
+      "url": "https://www.law.cornell.edu/supct/search",
+      "selectors": {
+        "content": "div.opinion-body, div.case-metadata",
+        "links": "a.case-link, a.pagination"
+      }
+    },
+    {
+      "name": "findlaw_supreme_court",
+      "url": "https://caselaw.findlaw.com/court/us-supreme-court",
+      "selectors": {
+        "content": "div.caselawcontent",
+        "links": "a.caselink, a.paging"
+      }
+    },
+    {
+      "name": "courtlistener",
+      "url": "https://www.courtlistener.com/opinion/supreme-court/",
+      "selectors": {
+        "content": "div.opinion-text, div.opinion-metadata",
+        "links": "a.visitable, a.page-numbers"
+      }
+    }
+  ]
+}
