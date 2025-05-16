@@ -132,6 +132,15 @@ class SessionManager:
         
         return session_id
     
+    def get_session_id(self) -> Optional[str]:
+        """
+        Get the ID of the current session.
+        
+        Returns:
+            Current session ID or None if no active session
+        """
+        return self.current_session_id
+    
     def load_session(self, session_id: str) -> Dict[str, Any]:
         """
         Load an existing session.
