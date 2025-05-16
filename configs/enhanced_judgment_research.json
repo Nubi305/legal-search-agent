@@ -1,0 +1,60 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (Judgment Research)",
+  "request_delay": 3.0,
+  "max_pages": 50,
+  "max_depth": 3,
+  "document_types": ["html", "pdf", "txt"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "nyscef_case_search",
+      "url": "https://iapps.courts.state.ny.us/nyscef/CaseSearch?TAB=name",
+      "selectors": {
+        "content": "div.caseDetails, table.caseResults, div.documentList, div.search-results, div.results-table",
+        "links": "a.caseLink, a.documentLink, a.paginationLink, a.result-link, a.doc-link"
+      }
+    },
+    {
+      "name": "blackbook_corporate_research",
+      "url": "https://www.blackbookonline.info/USA-Corporations.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.state-table, div.corporate-data, div.search-results",
+        "links": "a.state-link, a.division-link, a.resource-link, a.corporate-link, a.result-link"
+      }
+    },
+    {
+      "name": "court_listener_judgments",
+      "url": "https://www.courtlistener.com/opinion/",
+      "selectors": {
+        "content": "div.opinion-text, div.opinion-metadata, div.result-list, div.case-data, div.court-info",
+        "links": "a.visitable, a.page-numbers, a.opinion-link, a.court-link, a.result-link"
+      }
+    },
+    {
+      "name": "county_clerks_records",
+      "url": "https://www.blackbookonline.info/USA-County-Public-Records.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.records-table, div.results, div.clerk-data",
+        "links": "a.county-link, a.state-link, a.resource-link, a.results-link, a.document-link"
+      }
+    },
+    {
+      "name": "ucc_filings",
+      "url": "https://www.blackbookonline.info/USA-UCC-Filings.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.uccTable, div.filing-data, div.search-results",
+        "links": "a.state-link, a.resource-link, a.filing-link, a.document-link, a.result-link"
+      }
+    },
+    {
+      "name": "sos_business_search",
+      "url": "https://www.blackbookonline.info/USA-Secretary-of-State.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.sos-table, div.business-data, div.search-results",
+        "links": "a.state-link, a.resource-link, a.business-link, a.result-link, a.entity-link"
+      }
+    }
+  ]
+}
