@@ -1,0 +1,31 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# Database files
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# Vector stores
+vector_stores/
+
+# Downloaded documents
+downloaded_docs/
+
+# OS specific
+.DS_Store
+Thumbs.db
