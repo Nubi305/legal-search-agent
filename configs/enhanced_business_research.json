@@ -1,0 +1,60 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (Business Research)",
+  "request_delay": 3.0,
+  "max_pages": 30,
+  "max_depth": 2,
+  "document_types": ["html", "pdf", "txt"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "blackbook_corporate_research",
+      "url": "https://www.blackbookonline.info/USA-Corporations.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.state-table",
+        "links": "a.state-link, a.division-link, a.resource-link"
+      }
+    },
+    {
+      "name": "opencorporates",
+      "url": "https://opencorporates.com/",
+      "selectors": {
+        "content": "div.search-results, div.company-details, div.officers",
+        "links": "a.company-link, a.search-result, a.jurisdiction-link"
+      }
+    },
+    {
+      "name": "sec_edgar_company_search",
+      "url": "https://www.sec.gov/edgar/searchedgar/companysearch",
+      "selectors": {
+        "content": "table.tableFile, div.formContent, div.companyInfo",
+        "links": "a.filing-link, a.viewFiling"
+      }
+    },
+    {
+      "name": "court_listener_search",
+      "url": "https://www.courtlistener.com/opinion/",
+      "selectors": {
+        "content": "div.opinion-text, div.opinion-metadata",
+        "links": "a.visitable, a.page-numbers"
+      }
+    },
+    {
+      "name": "bbb_business_profiles",
+      "url": "https://www.bbb.org/search",
+      "selectors": {
+        "content": "div.business-card, div.dtm-business, div.business-ratings",
+        "links": "a.business-name, a.dtm-business-name"
+      }
+    },
+    {
+      "name": "legal_news",
+      "url": "https://www.law360.com/search",
+      "selectors": {
+        "content": "div.article-body, div.results-list",
+        "links": "a.article-link, a.search-result"
+      }
+    }
+  ]
+}
