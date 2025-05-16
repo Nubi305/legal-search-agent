@@ -4,7 +4,7 @@ A specialized web search agent designed to crawl legal websites, extract importa
 
 ## Features
 
-- **Web Crawling**: Crawl legal websites and databases to collect documents
+- **Web Crawling**: Crawl legal websites and databases to collect documents with robust error handling
 - **Document Processing**: Extract structured data from legal documents (HTML, PDF, text)
 - **Smart Indexing**: Store and index legal information for quick retrieval using vector embeddings
 - **Natural Language Search**: Search through collected data with natural language queries
@@ -14,7 +14,9 @@ A specialized web search agent designed to crawl legal websites, extract importa
 - **Visual Workflow Creation**: LangFlow integration for visually creating and modifying workflows
 - **User-Friendly Interface**: Streamlit web application for easy interaction
 - **Session Management**: Track research across sessions with full history and context
-- **Firecrawl Integration**: Enhanced web scraping and structured data extraction using Firecrawl
+- **Enhanced Security**: Comprehensive input validation and secure file handling
+- **Improved Error Handling**: Robust error management with detailed logging
+- **Advanced Firecrawl Integration**: Enhanced web scraping and structured data extraction with batch processing
 
 ## Installation
 
@@ -100,6 +102,9 @@ python tools/firecrawl_test.py extract https://iapps.courts.state.ny.us/nyscef/C
 
 # Crawler a Secretary of State website
 python tools/firecrawl_test.py crawl https://sos.gov.state/business-search --limit 50
+
+# Batch process multiple websites with retry logic
+python tools/firecrawl_test.py extract "url1,url2,url3" --url-type business
 ```
 
 ## Specialized Research Tools
@@ -116,8 +121,9 @@ The repository includes specialized research tools in the `tools/` directory:
 
 ### Core Modules
 
-- **Configuration Module (`config.py`)**: Manages all settings for the agent
-- **Crawler Module (`crawler.py`)**: Crawls legal websites to download documents
+- **Error Handler (`error_handler.py`)**: Centralized error handling and validation
+- **Configuration Module (`config.py`)**: Manages all settings for the agent with validation
+- **Crawler Module (`crawler.py`)**: Crawls legal websites with enhanced security measures
 - **Processor Module (`processor.py`)**: Processes and structures raw data
 - **Indexer Module (`indexer.py`)**: Creates searchable vector indices
 - **Search Module (`search.py`)**: Enables basic search functionality
@@ -125,7 +131,7 @@ The repository includes specialized research tools in the `tools/` directory:
 - **LangFlow Integration (`langflow_integration.py`)**: Visual workflow creation
 - **Web Interface (`web_app.py`)**: Streamlit web application
 - **Session Manager (`session_manager.py`)**: Manages research session history and context
-- **Firecrawl Integration (`firecrawl_integration.py`)**: Enhanced web scraping and data extraction
+- **Firecrawl Integration (`firecrawl_integration.py`)**: Enhanced web scraping with retry logic
 
 ### AI-Powered Features
 
@@ -133,7 +139,17 @@ The repository includes specialized research tools in the `tools/` directory:
 - **Legal Question Answering**: Custom-trained QA chain using LangChain
 - **Conversational Legal Assistant**: Chat with an AI about legal topics
 - **Legal Prompt Templates**: Specialized prompts for legal domain tasks
-- **Structured Data Extraction**: Schema-based extraction of legal information
+- **Structured Data Extraction**: Schema-based extraction of legal information with validation
+
+## Testing
+
+```bash
+# Run unit tests
+pytest
+
+# Run tests with coverage report
+pytest --cov=src tests/
+```
 
 ## Requirements
 
@@ -152,6 +168,16 @@ OPENAI_API_KEY=sk-your-openai-key
 FIRECRAWL_API_KEY=fc-your-firecrawl-key
 ```
 
+## Security Features
+
+- Input validation for all user inputs and configuration files
+- URL validation and sanitization before crawling
+- Safe filename generation to prevent path traversal
+- Content size limits to prevent resource exhaustion
+- Retry logic with exponential backoff for resilience
+- Comprehensive error handling with detailed logging
+- Secure HTTP requests with timeouts and proper headers
+
 ## License
 
 MIT
@@ -159,3 +185,9 @@ MIT
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
