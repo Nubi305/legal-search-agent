@@ -2,6 +2,77 @@
 
 This directory contains specialized tools built on top of the legal search agent for specific research needs.
 
+## Enhanced Business Entity Search Tool
+
+The enhanced business entity search tool helps you find comprehensive information about business entities and their owners from Secretary of State databases and BlackBookOnline sources.
+
+### Usage
+
+```bash
+python tools/enhanced_business_search.py --business "Acme Corporation" --state FL
+# OR
+python tools/enhanced_business_search.py --owner "John Smith" --state NY
+```
+
+### Options
+
+- `--business`: Business name to search
+- `--owner`: Owner/officer name to search (use either --business OR --owner)
+- `--state`: State abbreviation (e.g., FL, NY, CA)
+- `--refresh`: Refresh data by recrawling sources
+- `--output`: Output directory (default: enhanced_business_search)
+- `--use-firecrawl`: Use Firecrawl for enhanced extraction (if available)
+- `--api-key`: Firecrawl API key (defaults to FIRECRAWL_API_KEY env var)
+- `--prefer-prompts`: Prefer prompt-based extraction over schema-based extraction
+
+### Example
+
+```bash
+# Search for a business entity in Florida
+python tools/enhanced_business_search.py --business "Sunshine Enterprises LLC" --state FL
+
+# Search for businesses associated with an owner in New York
+python tools/enhanced_business_search.py --owner "Jane Smith" --state NY
+
+# Use Firecrawl for enhanced extraction
+python tools/enhanced_business_search.py --business "Tech Innovations Inc" --use-firecrawl
+```
+
+## Enhanced Judgment & Lien Search Tool
+
+The enhanced judgment search tool helps you find civil judgments, liens, and legal claims against businesses and individuals, with specialized handling of BlackBookOnline and NYSCEF data.
+
+### Usage
+
+```bash
+python tools/enhanced_judgment_search.py --name "Acme LLC" --type business --state NY
+```
+
+### Options
+
+- `--name`: Business or person name to search (required)
+- `--type`: Type of entity to search (business, person, or both)
+- `--state`: State abbreviation (e.g., NY, FL, CA)
+- `--county`: County name (for more targeted searches)
+- `--refresh`: Refresh data by recrawling sources
+- `--output`: Output directory (default: enhanced_judgment_search)
+- `--use-firecrawl`: Use Firecrawl for enhanced extraction (if available)
+- `--api-key`: Firecrawl API key (defaults to FIRECRAWL_API_KEY env var)
+- `--prefer-prompts`: Prefer prompt-based extraction over schema-based extraction
+
+### Example
+
+```bash
+# Search for judgments against a business in New York
+python tools/enhanced_judgment_search.py --name "ABC Construction LLC" --type business --state NY
+
+# Search for judgments against a person in a specific county
+python tools/enhanced_judgment_search.py --name "John Smith" --type person --state FL --county Broward
+
+# Use Firecrawl for enhanced NYSCEF extraction
+python tools/enhanced_judgment_search.py --name "Global Enterprises" --type business --state NY --use-firecrawl
+```
+
 ## Company Research Tool
 
 The company research tool helps you find information about a company's legal status, registration, and history.
@@ -134,6 +205,33 @@ When you load a session with `--load`, you'll enter interactive mode where you c
 - Continue research with contextual awareness
 - Get AI-generated suggestions for next research steps based on previous findings
 
+## Firecrawl Integration
+
+Several tools now support Firecrawl integration for enhanced data extraction from complex legal websites. To use Firecrawl features:
+
+1. Install the Firecrawl Python SDK: `pip install firecrawl-py`
+2. Add your Firecrawl API key to your `.env` file: `FIRECRAWL_API_KEY=your_key_here`
+3. Use the `--use-firecrawl` flag with supported tools
+
+Firecrawl provides:
+- Better handling of JavaScript-heavy websites
+- Structured data extraction using custom schemas
+- Direct access to BlackBookOnline and NYSCEF data
+- Faster and more accurate extraction of complex legal information
+
+## BlackBookOnline and NYSCEF Resources
+
+The enhanced tools specifically target these valuable data sources:
+
+### BlackBookOnline
+- **Business Entities**: https://www.blackbookonline.info/USA-Corporations.aspx
+- **County Records**: https://www.blackbookonline.info/USA-County-Public-Records.aspx
+- **UCC Filings**: https://www.blackbookonline.info/USA-UCC-Filings.aspx
+- **State-Specific SOS**: https://www.blackbookonline.info/[STATE]-Secretary-of-State.aspx
+
+### NYSCEF (New York State Courts)
+- **Case Search**: https://iapps.courts.state.ny.us/nyscef/CaseSearch?TAB=name
+
 ## Advanced Usage
 
 These tools use the legal search agent's core modules for data collection, processing, and analysis. You can further enhance your research by:
@@ -142,11 +240,12 @@ These tools use the legal search agent's core modules for data collection, proce
 2. **Using the web interface**: Start the Streamlit web app to interact with your research data
 3. **Custom LangChain prompts**: Modify the LangChain queries in the tools for more specialized research
 4. **Session continuity**: Use the session management system to maintain context between research sessions
+5. **Enhanced schemas**: Modify the schemas in `src/enhanced_legal_schemas.py` to extract additional structured data
 
 ## Notes
 
 - These tools require the same dependencies as the main legal search agent
 - For advanced LangChain features, you'll need an OpenAI API key in your .env file
 - Results will be stored in the specified output directories for future reference
-- The NYSCEF system (https://iapps.courts.state.ny.us/nyscef/CaseSearch) is especially valuable for New York judgments
+- Using `--use-firecrawl` with an API key provides the most comprehensive results
 - Session data is stored in JSON format and can be backed up or transferred between systems
