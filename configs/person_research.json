@@ -1,0 +1,60 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (Person Research)",
+  "request_delay": 3.0,
+  "max_pages": 30,
+  "max_depth": 2,
+  "document_types": ["html", "pdf", "txt"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "blackbook_public_records",
+      "url": "https://www.blackbookonline.info/USA-County-Public-Records.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.records-table",
+        "links": "a.county-link, a.state-link, a.resource-link"
+      }
+    },
+    {
+      "name": "professional_licensing",
+      "url": "https://www.blackbookonline.info/USA-Professional-Licensing.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.licensing-table",
+        "links": "a.license-link, a.profession-link, a.state-link"
+      }
+    },
+    {
+      "name": "court_listener_people",
+      "url": "https://www.courtlistener.com/person/",
+      "selectors": {
+        "content": "div.person-details, div.opinion-list",
+        "links": "a.visitable, a.page-numbers"
+      }
+    },
+    {
+      "name": "federal_court_records_pacer",
+      "url": "https://pacer.uscourts.gov/",
+      "selectors": {
+        "content": "div.content-area, div.pacer-content",
+        "links": "a.document-link, a.court-link"
+      }
+    },
+    {
+      "name": "legal_news_people",
+      "url": "https://www.law360.com/search/people",
+      "selectors": {
+        "content": "div.article-body, div.results-list",
+        "links": "a.article-link, a.search-result"
+      }
+    },
+    {
+      "name": "bar_associations",
+      "url": "https://www.americanbar.org/directories/",
+      "selectors": {
+        "content": "div.directory-content, div.lawyer-directory",
+        "links": "a.directory-link, a.lawyer-link"
+      }
+    }
+  ]
+}
