@@ -57,6 +57,38 @@ python tools/person_research.py --name "Jane Doe" --state CA --profession lawyer
 python tools/person_research.py --name "Robert Johnson" --profession "business executive" --refresh
 ```
 
+## Judgment Research Tool
+
+The judgment research tool helps you find civil judgments, liens, and legal claims against businesses and individuals, with special attention to NY courts (NYSCEF).
+
+### Usage
+
+```bash
+python tools/judgment_research.py --name "Acme LLC" --type business --state NY
+```
+
+### Options
+
+- `--name`: Business or person name to search (required)
+- `--type`: Type of entity to search (business, person, or both)
+- `--state`: State abbreviation (e.g., NY, FL, CA)
+- `--county`: County name (for more targeted searches)
+- `--refresh`: Refresh data by recrawling sources
+- `--output`: Output directory (default: judgment_research)
+
+### Example
+
+```bash
+# Search for judgments against a business in New York
+python tools/judgment_research.py --name "ABC Construction LLC" --type business --state NY
+
+# Search for judgments against a person in a specific county
+python tools/judgment_research.py --name "John Smith" --type person --state FL --county Broward
+
+# Search for judgments with fresh data
+python tools/judgment_research.py --name "Global Enterprises" --refresh
+```
+
 ## Advanced Usage
 
 These tools use the legal search agent's core modules for data collection, processing, and analysis. You can further enhance your research by:
@@ -70,3 +102,4 @@ These tools use the legal search agent's core modules for data collection, proce
 - These tools require the same dependencies as the main legal search agent
 - For advanced LangChain features, you'll need an OpenAI API key in your .env file
 - Results will be stored in the specified output directories for future reference
+- The NYSCEF system (https://iapps.courts.state.ny.us/nyscef/CaseSearch) is especially valuable for New York judgments
