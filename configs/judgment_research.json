@@ -1,0 +1,52 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (Judgment Research)",
+  "request_delay": 3.0,
+  "max_pages": 30,
+  "max_depth": 2,
+  "document_types": ["html", "pdf", "txt"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "nyscef_case_search",
+      "url": "https://iapps.courts.state.ny.us/nyscef/CaseSearch?TAB=name",
+      "selectors": {
+        "content": "div.caseDetails, table.caseResults, div.documentList",
+        "links": "a.caseLink, a.documentLink, a.paginationLink"
+      }
+    },
+    {
+      "name": "pacer_federal_judgments",
+      "url": "https://pacer.uscourts.gov/",
+      "selectors": {
+        "content": "div.content-area, div.pacer-content, table.case-details",
+        "links": "a.document-link, a.case-link, a.court-link"
+      }
+    },
+    {
+      "name": "court_listener_judgments",
+      "url": "https://www.courtlistener.com/opinion/",
+      "selectors": {
+        "content": "div.opinion-text, div.opinion-metadata, div.result-list",
+        "links": "a.visitable, a.page-numbers"
+      }
+    },
+    {
+      "name": "county_clerks_records",
+      "url": "https://www.blackbookonline.info/USA-County-Public-Records.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.records-table",
+        "links": "a.county-link, a.state-link, a.resource-link"
+      }
+    },
+    {
+      "name": "ucc_filings",
+      "url": "https://www.blackbookonline.info/USA-UCC-Filings.aspx",
+      "selectors": {
+        "content": "div.container, div.content-container, table.uccTable",
+        "links": "a.state-link, a.resource-link"
+      }
+    }
+  ]
+}
