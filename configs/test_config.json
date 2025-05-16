@@ -1,0 +1,28 @@
+{
+  "user_agent": "LegalSearchAgent/1.0 (Test Run)",
+  "request_delay": 3.0,
+  "max_pages": 10,
+  "max_depth": 2,
+  "document_types": ["html", "pdf"],
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9"
+  },
+  "sources": [
+    {
+      "name": "cornell_lii_recent",
+      "url": "https://www.law.cornell.edu/supremecourt/text/recent",
+      "selectors": {
+        "content": "div.opinion, div.text",
+        "links": "a.case-link, a.opinion-link"
+      }
+    },
+    {
+      "name": "justia_recent_opinions",
+      "url": "https://supreme.justia.com/cases/federal/us/year/2022/",
+      "selectors": {
+        "content": "div.opinion-text, div.opinion-summary",
+        "links": "a.opinion-link, a.case-name"
+      }
+    }
+  ]
+}
